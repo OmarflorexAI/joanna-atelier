@@ -136,6 +136,28 @@ scope and decision record in [PRD.md](PRD.md). **Do not duplicate those here —
 - **37.** **Responsive verified**: zero horizontal overflow at 360/390/768 on all routes,
   measured via CDP after every layout change.
 
+## Deployment (live preview)
+
+**https://joanna-atelier.netlify.app** — deployed 2026-08-16, all routes 200.
+
+- Netlify project `joanna-atelier` (id `5fd5753b-0080-4d2b-b2d1-d1eb0f070c38`),
+  account `omarsamirflores@gmail.com`.
+- Source: **private** repo `github.com/OmarflorexAI/joanna-atelier`, branch `main`.
+  Netlify builds on push.
+- **Local `netlify deploy --build` does NOT work on this machine.** Windows blocks
+  symlink creation (`fs.symlinkSync` → EPERM; junctions work, symlinks do not) and the
+  Next.js adapter symlinks when publishing static content. The error surfaces as the
+  unhelpful "Failed publishing static content". Build on Netlify's servers instead —
+  push to `main`, or `netlify api createSiteBuild`. Enabling Windows Developer Mode
+  would also fix it locally.
+- `netlify.toml` must NOT set `publish`. The adapter picks the publish dir and
+  provisions the SSR functions; hard-coding `.next` causes the same error.
+- **Env vars are NOT set yet** — `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM`.
+  Until they are, `/api/contact` returns `{ok:true, delivered:false}` and only logs.
+  Verified live: 200 with `delivered:false`, and 422 with field errors on bad input.
+- Verified live: all 6 security headers present, 404 on unknown routes, zero horizontal
+  overflow at 390 and 1280.
+
 ## Current State
 
 **Working.** `npm run lint` and `npm run build` both clean. 17 routes prerender.
