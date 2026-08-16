@@ -10,7 +10,10 @@
 
 [build]
   command = "npm run build"
-  publish = ".next"
+  # No `publish` here on purpose. The Next.js adapter decides what to publish
+  # and provisions the functions for SSR routes; hard-coding `.next` made it
+  # fail with "Failed publishing static content", because .next is Next's
+  # internal build output, not a static web root.
 
 [build.environment]
   # Match the local toolchain. Netlify defaults can lag behind.

@@ -44,3 +44,6 @@ next-env.d.ts
 
 # Generated for Joanna to review; regenerate with scripts/export-translations.mjs
 translations.csv
+
+# Local Netlify folder
+.netlify
