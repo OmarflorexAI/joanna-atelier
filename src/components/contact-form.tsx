@@ -238,14 +238,18 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={busy}
-          className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full bg-jade px-10 py-4 text-[0.8rem] uppercase tracking-[0.16em] text-bone transition-[background-color,transform] duration-[var(--hover)] ease-[var(--ease)] hover:bg-jade-deep active:translate-y-px disabled:opacity-70"
+          className="btn-send group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full bg-jade px-10 py-4 text-[0.8rem] font-bold uppercase tracking-[0.16em] text-bone transition-[background-color,transform] duration-[var(--hover)] ease-[var(--ease)] hover:bg-jade-deep active:translate-y-px disabled:opacity-70"
         >
           <span
             className={`transition-transform duration-[var(--hover)] ease-[var(--ease)] ${
               busy ? "-translate-y-8" : ""
             }`}
+            style={{ position: "relative", zIndex: 1 }}
           >
             {t("contact.send")}
+            <span aria-hidden className="btn-send-arrow ml-2 inline-block">
+              →
+            </span>
           </span>
           <span
             aria-hidden

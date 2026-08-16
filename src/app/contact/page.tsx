@@ -16,14 +16,16 @@ export const metadata: Metadata = {
  * paste a link to a single answer — e.g. /contact#lead-time
  * TODO(joanna): replace every answer with her real terms.
  */
+/* Five, not eight. The cut three (shipping, alterations, care) all answer
+   questions that arise AFTER someone has commissioned a piece; the page's job
+   is to get them to write in the first place. Shipping is covered inside the
+   "remote" answer. Their strings stay in i18n.ts so nothing breaks and they
+   can be restored without retranslating. */
 const FAQ = [
   { id: "lead-time" },
   { id: "pricing" },
   { id: "fittings" },
   { id: "remote" },
-  { id: "shipping" },
-  { id: "alterations" },
-  { id: "care" },
   { id: "names" },
 ];
 

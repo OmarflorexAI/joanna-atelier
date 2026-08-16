@@ -126,6 +126,15 @@ const Carousel_003 = ({
   .Carousal_003 .swiper-slide {
     background-position: center;
     background-size: cover;
+    /* An opaque bed under every slide. Slides were transparent, so during the
+       transform the oat page showed through the image edges as a light flash
+       before the bitmap painted. */
+    background-color: var(--oat);
+    /* Promote to its own layer and stop the edge shimmer that 3D-transformed
+       images get when the rasteriser re-samples them each frame. */
+    will-change: transform;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
     /* Narrow enough that BOTH neighbours keep a tappable strip on screen at
        360px — the slides are the only control now, so an off-screen
        neighbour would mean no way to advance except swiping. */
@@ -250,7 +259,11 @@ const Carousel_003 = ({
             stretch: 0,
             depth: 100,
             modifier: 1,
-            slideShadows: true,
+            /* Off. Swiper injects up to 16 dark gradient overlays and animates
+               their opacity during rotation; against the light oat ground that
+               reads as a flicker rather than depth. Depth here comes from the
+               coverflow rotation and scale alone. */
+            slideShadows: false,
           }}
           pagination={
             showPagination
@@ -364,7 +377,7 @@ function SlideMedia({
   activateLabel?: string;
 }) {
   const media = (
-    <div className="relative h-full w-full overflow-hidden">
+    <div className="relative h-full w-full overflow-hidden bg-oat [backface-visibility:hidden]">
       <Image
         className="object-cover"
         src={image.src}

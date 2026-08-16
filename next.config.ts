@@ -32,9 +32,13 @@ const nextConfig: NextConfig = {
    *   compromised script cannot reach a visitor's camera or location.
    */
   async headers() {
+    /* React's development build uses eval() for source-mapped callstacks and
+       fast refresh. Production React does not, so 'unsafe-eval' is added only
+       when running `next dev` — the deployed CSP stays strict. */
+    const dev = process.env.NODE_ENV === "development";
     const csp = [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline'",
+      `script-src 'self' 'unsafe-inline'${dev ? " 'unsafe-eval'" : ""}`,
       "style-src 'self' 'unsafe-inline'",
       // next/font self-hosts its files, so no external font origin is needed.
       "font-src 'self' data:",
