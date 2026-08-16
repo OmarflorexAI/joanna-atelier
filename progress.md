@@ -141,7 +141,7 @@ scope and decision record in [PRD.md](PRD.md). **Do not duplicate those here —
 **https://joanna-atelier.netlify.app** — deployed 2026-08-16, all routes 200.
 
 - Netlify project `joanna-atelier` (id `5fd5753b-0080-4d2b-b2d1-d1eb0f070c38`),
-  account `omarsamirflores@gmail.com`.
+  account: the owner's Netlify login (see the Netlify dashboard).
 - Source: **private** repo `github.com/OmarflorexAI/joanna-atelier`, branch `main`.
   Netlify builds on push.
 - **Local `netlify deploy --build` does NOT work on this machine.** Windows blocks
