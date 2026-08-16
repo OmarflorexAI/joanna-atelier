@@ -47,3 +47,6 @@ translations.csv
 
 # Local Netlify folder
 .netlify
+
+# Stray Tailwind CLI logs
+tailwindcss-*.log
