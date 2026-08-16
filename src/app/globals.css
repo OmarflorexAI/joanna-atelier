@@ -1,0 +1,695 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Joanna — token layer
+   Warm neutrals + one jewel accent. Light mode only.
+   The garment is the only hero: the interface recedes.
+   ============================================================ */
+
+:root {
+  /* Surfaces — max two per view */
+  --bone: #faf8f5;
+  --oat: #efeae1;
+  --linen: #e4ddd2;
+
+  /* Ink */
+  --umber: #241f1b; /* primary text */
+  --taupe: #5a5149; /* body copy — 7.3:1 on bone, clears AAA */
+  --silt: #786e64; /* micro-labels — 4.7:1 on bone, passes AA */
+
+  /* Accent — one jewel tone, reserved for action */
+  --jade: #1f4d3d;
+  --jade-deep: #163629;
+  --jade-tint: #eef2ef;
+
+  /* Lines */
+  --rule: rgba(36, 31, 27, 0.14);
+  --rule-strong: rgba(36, 31, 27, 0.28);
+
+  /* Motion — retained from the Lannino system, sound scales */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --micro: 180ms;
+  --hover: 320ms;
+  --reveal: 900ms;
+  /* The nav's condense: longer and softer than a hover, because it is a
+     change of state the eye follows rather than a response to a pointer. */
+  --nav: 620ms;
+  --ease-nav: cubic-bezier(0.32, 0.72, 0, 1);
+  /* The header occupies this height at EVERY scroll position. Keeping it
+     constant is what stops the fixed bar resizing under the eye mid-scroll. */
+  --nav-h: 5.25rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --nav-h: 6rem;
+  }
+}
+
+@theme inline {
+  --color-bone: var(--bone);
+  --color-oat: var(--oat);
+  --color-linen: var(--linen);
+  --color-umber: var(--umber);
+  --color-taupe: var(--taupe);
+  --color-silt: var(--silt);
+  --color-jade: var(--jade);
+  --color-jade-deep: var(--jade-deep);
+  --color-jade-tint: var(--jade-tint);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-heading: var(--font-heading);
+  --font-mono: var(--font-mono);
+}
+
+* {
+  border-color: var(--rule);
+}
+
+html {
+  scroll-behavior: smooth;
+  /* FAQ anchors must not land under the fixed nav (84px tall with the
+     signature, so 7rem clears it with room to breathe). */
+  scroll-padding-top: 7rem;
+}
+
+body {
+  background: var(--bone);
+  color: var(--umber);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  /* 400, not 300. Hairline weights read as "designed" in mockups and as
+     "hard to read" on a real phone in daylight. */
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--jade);
+  color: var(--bone);
+}
+
+/* Focus: visible, in the accent, never removed */
+:focus-visible {
+  outline: 2px solid var(--jade);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---------- Type scale ---------- */
+
+.t-display-xl {
+  font-family: var(--font-display), serif;
+  /* Instrument Serif ships a single 400. Asking for 300 would make the
+     browser synthesise a lighter face and the strokes go ragged. */
+  font-weight: 400;
+  font-size: clamp(3.4rem, 12vw, 9.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.022em;
+}
+
+.t-display-lg {
+  font-family: var(--font-display), serif;
+  font-weight: 400;
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  line-height: 1.0;
+  letter-spacing: -0.018em;
+}
+
+.t-display-md {
+  font-family: var(--font-display), serif;
+  font-weight: 400;
+  font-size: clamp(1.9rem, 4.2vw, 3.1rem);
+  line-height: 1.1;
+  letter-spacing: -0.012em;
+}
+
+.t-serif {
+  font-family: var(--font-display), serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+.t-body {
+  font-size: clamp(1.0625rem, 1.1vw, 1.125rem);
+  line-height: 1.72;
+  font-weight: 400;
+  letter-spacing: 0.004em;
+  color: var(--taupe);
+  text-wrap: pretty;
+}
+
+/* Section headers — Schibsted Grotesk, not the serif.
+
+   The serif is rationed: it carries the hero, piece titles and the closing
+   CTA, and nothing else. Section headers ("Selected work", "Standing", "How
+   a piece is made") are signposts rather than statements, so they take the
+   header sans. Using the serif everywhere made it ordinary; holding it back
+   means each appearance still lands.
+
+   Schibsted Grotesk rather than DM Sans here: it was drawn for editorial
+   hierarchy, and the change of face between header and body is itself a
+   layer of hierarchy that size and weight alone would have to carry. */
+.t-section {
+  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--umber);
+}
+
+/* The sans is the bold voice: labels, buttons and nav instruct in DM Sans
+   700 while body copy stays at 400, where bold would hurt readability. */
+.t-label {
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.005em;
+  color: var(--umber);
+}
+
+.t-micro {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+}
+
+/* ---------- Nav condense ----------
+
+   The bar settles into a floating pill once the page is scrolled.
+
+   Three rules, each fixing a specific defect measured in the browser:
+
+   1. THE HEADER'S HEIGHT NEVER CHANGES. Animating padding resized the fixed
+      header through ~27 heights while content scrolled beneath it.
+   2. ONE PAINTED SURFACE, NOT TWO. Cross-fading a full-bleed layer against an
+      inset pill left a frame where neither was opaque (measured combined
+      opacity 0) and stacked two `backdrop-filter` layers, which is expensive
+      and double-blurs while both are partly visible. There is now a single
+      skin whose shape, colour and shadow animate.
+   3. NO GEOMETRY ON THE SCROLL PATH. `border-radius`, `background`, `opacity`,
+      `box-shadow` and `transform` are all cheap; nothing here triggers layout.
+
+   The scroll listener that drives `data-pill` uses two thresholds — see
+   site-nav.tsx. A single threshold flapped seven times on scroll jitter.
+*/
+.nav-shell {
+  /* One height, always. Content is centred inside it. */
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+}
+
+.nav-bar {
+  position: relative;
+  /* This element's box must never change; everything visual is on .nav-skin. */
+}
+
+/* The single painted surface.
+
+   Unscrolled it is a full-bleed, square, transparent sheet with only a
+   hairline at its foot. Condensed it pulls its edges in, rounds off, lifts on
+   a shadow and takes the bone fill. Because it is one element throughout, the
+   surface never disappears between states. */
+.nav-skin {
+  position: absolute;
+  inset: 0 -100vw;
+  border: 1px solid transparent;
+  border-bottom-color: transparent;
+  border-radius: 0;
+  background: color-mix(in srgb, var(--bone) 0%, transparent);
+  box-shadow: 0 0 0 0 rgba(36, 31, 27, 0);
+  pointer-events: none;
+  transition:
+    inset var(--nav) var(--ease-nav),
+    border-radius var(--nav) var(--ease-nav),
+    border-color var(--nav) var(--ease-nav),
+    background-color var(--nav) var(--ease-nav),
+    box-shadow var(--nav) var(--ease-nav),
+    backdrop-filter var(--nav) var(--ease-nav);
+}
+
+.nav-bar[data-pill="true"] .nav-skin {
+  inset: 0 0.25rem;
+  border-radius: 999px;
+  border-color: var(--rule);
+  background: color-mix(in srgb, var(--bone) 96%, transparent);
+  box-shadow: 0 6px 28px rgba(36, 31, 27, 0.1);
+  backdrop-filter: blur(20px);
+}
+
+/* Mobile panel open at the top of the page: a flat sheet with a hairline,
+   so the open menu reads as attached to the bar rather than floating. */
+.nav-bar[data-pill="false"][data-open="true"] .nav-skin {
+  background: color-mix(in srgb, var(--bone) 92%, transparent);
+  border-bottom-color: var(--rule);
+  backdrop-filter: blur(12px);
+}
+
+/* The signature scales rather than re-rendering at a new width — a width
+   attribute cannot be transitioned, which is what made it snap. */
+.nav-mark {
+  transform-origin: left center;
+  transition: transform var(--nav) var(--ease-nav);
+}
+
+.nav-bar[data-pill="true"] .nav-mark {
+  transform: scale(0.86);
+}
+
+.nav-tabs {
+  transition: transform var(--nav) var(--ease-nav);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-skin,
+  .nav-mark,
+  .nav-tabs {
+    transition: none;
+  }
+}
+
+/* ---------- Raised button ----------
+
+   From the supplied `.button-name` snippet. Its mechanic is kept exactly:
+   a soft drop shadow plus an inset bottom edge that reads as a physical lip,
+   lifting 2px on hover and pressing 2px down on active, with `will-change`
+   on the two animated properties.
+
+   What changed is only the palette. The original was #fcfcfd on #36395a ink
+   with a #d6d6e7 lilac lip — a cool grey-blue that would be the only cool
+   colour on the site. Retoned to bone / umber / linen so the lip reads as a
+   warm edge, and the radius follows our 2px card convention rather than 4. */
+.btn-raised {
+  align-items: center;
+  appearance: none;
+  background-color: var(--bone);
+  border-radius: 2px;
+  border-width: 0;
+  box-shadow:
+    rgba(36, 31, 27, 0.18) 0 2px 4px,
+    rgba(36, 31, 27, 0.13) 0 7px 13px -3px,
+    var(--linen) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: var(--umber);
+  cursor: pointer;
+  display: inline-flex;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 22px;
+  padding-right: 22px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition:
+    box-shadow 0.15s,
+    transform 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  /* Our UI voice: the sans, bold, tracked out — not the snippet's 18px. */
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.btn-raised:focus-visible {
+  outline: 2px solid var(--jade);
+  outline-offset: 3px;
+  box-shadow:
+    var(--linen) 0 0 0 1.5px inset,
+    rgba(36, 31, 27, 0.3) 0 2px 4px,
+    rgba(36, 31, 27, 0.22) 0 7px 13px -3px,
+    var(--linen) 0 -3px 0 inset;
+}
+
+.btn-raised:hover {
+  color: var(--jade);
+  box-shadow:
+    rgba(36, 31, 27, 0.24) 0 4px 8px,
+    rgba(36, 31, 27, 0.16) 0 7px 13px -3px,
+    var(--linen) 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.btn-raised:active {
+  box-shadow: var(--linen) 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-raised {
+    transition: box-shadow 0.15s;
+  }
+  .btn-raised:hover,
+  .btn-raised:active {
+    transform: none;
+  }
+}
+
+/* ---------- Reveal on scroll ---------- */
+
+/* Progressive enhancement: content is visible by default and only hidden
+   once JS has confirmed it can reveal it again. Without JS — or for a
+   crawler — everything stays on screen. */
+.js .reveal[data-shown="false"] {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.reveal {
+  transition:
+    opacity var(--reveal) var(--ease),
+    transform var(--reveal) var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* ---------- Rule that draws itself ---------- */
+
+.rule-draw {
+  transform-origin: left;
+  transition: transform var(--reveal) var(--ease);
+}
+
+.js .rule-draw[data-shown="false"] {
+  transform: scaleX(0);
+}
+
+/* ---------- Signature reveal ----------
+
+   Same progressive-enhancement contract as .reveal: the signature is fully
+   inked by default, and is only withheld once the .js class confirms
+   something can bring it back. Without JS the mark is simply there.
+
+   The glyphs are filled outlines, not strokes, so this inks each letter in
+   and lifts it a few px rather than animating a stroke length — a pen laying
+   the word down left to right, one letter after the next. */
+.sig-draw path {
+  opacity: 1;
+  transform: none;
+  /* Without these a transform on an SVG path resolves against the whole
+     viewport, so each glyph would swing rather than lift in place. */
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    opacity var(--reveal) var(--ease),
+    transform var(--reveal) var(--ease);
+  transition-delay: calc(var(--sig-i, 0) * 90ms);
+}
+
+.js .sig-draw[data-shown="false"] path {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+/* Reduced motion: the signature is simply present. This must out-specify the
+   .js rule above, hence matching it selector-for-selector rather than
+   relying on source order. */
+@media (prefers-reduced-motion: reduce) {
+  .sig-draw path,
+  .js .sig-draw[data-shown="false"] path {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------- Typewriter ----------
+
+   While typing, the element stacks two copies: a transparent "ghost" holding
+   the full text (so the block already occupies its final height and nothing
+   below it jumps), and the live typed copy laid over it. Once finished the
+   component renders plain text again and both wrappers disappear. */
+.tw-typing {
+  position: relative;
+}
+
+.tw-typing .tw-ghost {
+  visibility: hidden;
+}
+
+.tw-typing .tw-live {
+  position: absolute;
+  inset: 0;
+}
+
+/* The caret: a thin rule in the accent, blinking on the micro beat. */
+.tw-caret {
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  margin-left: 0.08em;
+  vertical-align: -0.13em;
+  background: var(--jade);
+  animation: tw-blink 1s steps(1) infinite;
+}
+
+@keyframes tw-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tw-caret {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* ---------- Photography treatment ----------
+   Placeholder stock is shot for many contexts and arrives tonally loud —
+   saturated reds, studio purples, cool blues — which fights the warm
+   neutral palette and makes the catalog read as a stock grid rather than
+   one body of work.
+
+   `.plate` applies a gentle house grade: pull the saturation back, warm
+   the whites slightly, and lay a bone wash over the top. Applied to the
+   image only, never the page, so it survives whatever photography
+   replaces it. Remove or soften once Joanna's own shots land — her work
+   will already be art-directed. */
+
+.plate {
+  position: relative;
+  isolation: isolate;
+}
+
+.plate img {
+  filter: saturate(0.62) contrast(1.02) sepia(0.08) brightness(1.01);
+}
+
+.plate::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: color-mix(in srgb, var(--oat) 22%, transparent);
+  mix-blend-mode: multiply;
+}
+
+/* ---------- Buttons: rising-fill ----------
+   Two offset circles climb from below the button and flood it on hover.
+   Adapted from a supplied neumorphic snippet — the mechanic is kept, but
+   the grey/teal palette is replaced with our bone surface and jade accent,
+   and the soft double drop-shadow is dropped: it reads as a 2010s UI and
+   fights the flat, hairline-ruled surfaces used everywhere else. */
+
+.btn-rise {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  cursor: pointer;
+  padding: 0.95rem 2.1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-radius: 2px; /* square, not pill */
+  color: var(--umber);
+  background: transparent;
+  border: 1px solid var(--umber);
+  transition:
+    color var(--hover) var(--ease),
+    border-color var(--hover) var(--ease);
+}
+
+.btn-rise::before,
+.btn-rise::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  display: block;
+  border-radius: 50%;
+  background: var(--jade);
+  z-index: -1;
+  transition: all 500ms 100ms cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.btn-rise::before {
+  top: 100%;
+  width: 140%;
+  height: 180%;
+  transform: translateX(-50%) scale(1.25, 1);
+  background: color-mix(in srgb, var(--jade) 22%, transparent);
+}
+
+.btn-rise::after {
+  top: 180%;
+  width: 160%;
+  height: 190%;
+  transform: translateX(-50%) scale(1.45, 1);
+}
+
+.btn-rise:hover {
+  color: var(--bone);
+  border-color: var(--jade);
+}
+
+.btn-rise:hover::before {
+  top: -35%;
+  background: var(--jade);
+  transform: translateX(-50%) scale(0.8, 1.3);
+}
+
+.btn-rise:hover::after {
+  top: -45%;
+  transform: translateX(-50%) scale(0.8, 1.3);
+}
+
+.btn-rise:active {
+  transform: translateY(1px);
+}
+
+/* Solid variant — same rise, but starting from jade and flooding darker. */
+.btn-rise-solid {
+  color: var(--bone);
+  background: var(--jade);
+  border-color: var(--jade);
+}
+
+.btn-rise-solid::before {
+  background: color-mix(in srgb, var(--jade-deep) 45%, transparent);
+}
+
+.btn-rise-solid::after {
+  background: var(--jade-deep);
+}
+
+.btn-rise-solid:hover {
+  color: var(--bone);
+  border-color: var(--jade-deep);
+}
+
+.btn-rise-solid:hover::before,
+.btn-rise-solid:hover::after {
+  background: var(--jade-deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-rise::before,
+  .btn-rise::after {
+    transition: none;
+  }
+}
+
+/* ---------- Selection chips ----------
+   Squared-off, with a jade wash that wipes in from the left on hover. */
+
+.chip {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    color var(--hover) var(--ease),
+    border-color var(--hover) var(--ease);
+}
+
+.chip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--jade);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--hover) var(--ease);
+}
+
+.chip:hover:not(:has(:checked)) {
+  color: var(--bone);
+  border-color: var(--jade);
+}
+
+.chip:hover:not(:has(:checked))::before {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip::before {
+    transition: none;
+  }
+}
+
+/* ---------- Horizontal rail ---------- */
+
+[data-rail] {
+  scrollbar-width: none;
+}
+
+[data-rail]::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- Accessibility ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  .rule-draw {
+    transform: scaleX(1);
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

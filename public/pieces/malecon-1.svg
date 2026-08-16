@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200" role="img" aria-label="malecon">
+  <rect width="900" height="1200" fill="#e6ded2"/>
+  <path d="M 369 360
+           C 324 600, 206.99999999999997 936, 206.99999999999997 1128
+           L 693 1128
+           C 693 936, 576 600, 531 360
+           Z" fill="#d0c4b2" opacity=".85"/>
+  <circle cx="450" cy="240" r="49.5" fill="#d0c4b2" opacity=".7"/>
+  <rect x="0" y="1199" width="900" height="1" fill="rgba(36,31,27,.10)"/>
+</svg>

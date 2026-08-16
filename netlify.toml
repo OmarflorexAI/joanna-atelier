@@ -1,0 +1,34 @@
+# Netlify configuration.
+#
+# The Next.js runtime plugin is what makes App Router, Server Components and
+# the /api/contact route work here; without it Netlify would try to serve the
+# build output as a plain static folder and the contact form would 404.
+#
+# Security headers are NOT duplicated here — they are defined once in
+# next.config.ts and the runtime passes them through. Two sources for the same
+# header is how they drift apart.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  # Match the local toolchain. Netlify defaults can lag behind.
+  NODE_VERSION = "24"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Long-cache the fingerprinted build output. Everything under /_next/static
+# carries a content hash in its filename, so it can never go stale.
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Piece photography is not fingerprinted, so it gets a shorter TTL with
+# revalidation rather than an immutable year.
+[[headers]]
+  for = "/pieces/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
