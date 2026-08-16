@@ -110,6 +110,22 @@ body {
   letter-spacing: -0.022em;
 }
 
+/* The closing CTA. Its own step rather than .t-display-xl, which five page
+   headings also use.
+
+   Those headings are authored English and hold one line at 12vw. This one is
+   translated: "Begin a piece" (13 chars) becomes "Comenzar una pieza" (18),
+   which at the xl scale wrapped to two lines at 360 and 390px and pushed the
+   ↗ onto a third, orphaned under the text instead of beside it. Sized so the
+   longer string still sets on one line on a phone. */
+.t-display-cta {
+  font-family: var(--font-display), serif;
+  font-weight: 400;
+  font-size: clamp(2.6rem, 8.4vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
 .t-display-lg {
   font-family: var(--font-display), serif;
   font-weight: 400;

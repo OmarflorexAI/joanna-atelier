@@ -23,7 +23,7 @@ export function FooterCta() {
         className="group inline-flex flex-col no-underline"
       >
         <span className="t-micro text-silt">{t("footer.enquiries")}</span>
-        <span className="t-display-xl mt-6 flex flex-wrap items-baseline gap-x-6 gap-y-2">
+        <span className="t-display-cta mt-6 flex flex-wrap items-baseline gap-x-6 gap-y-2">
           <span className="transition-opacity duration-[var(--hover)] group-hover:opacity-70">
             {t("footer.ctaTitle")}
           </span>
