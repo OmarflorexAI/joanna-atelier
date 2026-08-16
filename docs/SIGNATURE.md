@@ -1,11 +1,11 @@
-# The Joanna signature mark
+# The Johanna signature mark
 
 Provenance and licence for the signature wordmark in
 [src/components/signature.tsx](../src/components/signature.tsx).
 
 ## What it is
 
-Six SVG outline paths — one per letter of "Joanna" — normalised to a 320×120
+Six SVG outline paths — one per letter of "Johanna" — normalised to a 320×120
 viewBox. They are static artwork committed to the repo. There is no font
 fetched at runtime and no font file shipped with the site.
 
@@ -35,7 +35,7 @@ it from `componentry.fun` at runtime. That was replaced for three reasons:
 
 1. **Licence.** Lastoria is a commercial typeface. Most commercial font EULAs
    carve out logo and trademark use specifically, requiring a separate
-   extended licence. A logo is a permanent asset Joanna needs to own outright,
+   extended licence. A logo is a permanent asset Johanna needs to own outright,
    so deriving her mark from it without that licence was not acceptable.
 2. **Third-party runtime dependency.** The logo would have been fetched from
    someone else's server on every page load, and would vanish sitewide if that
@@ -51,11 +51,11 @@ letter at a time. That is implemented here in ~20 lines of CSS against static
 paths, so the mark is server-rendered, present in the HTML with JS disabled,
 and honours `prefers-reduced-motion`.
 
-## If Joanna wants her real signature instead
+## If Johanna wants her real signature instead
 
 This is the better long-term answer, and the mark is a drop-in replacement:
 
-1. Have her sign "Joanna" in black ink on unlined white paper. Photograph or
+1. Have her sign "Johanna" in black ink on unlined white paper. Photograph or
    scan it straight-on at high resolution.
 2. Vectorise it (Illustrator: Image Trace → Black and White Logo → Expand;
    or Inkscape: Path → Trace Bitmap).

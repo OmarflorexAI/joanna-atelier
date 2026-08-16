@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 };
 
 /**
- * The FAQ exists to end repeat DMs. Every entry has a stable id so Joanna can
+ * The FAQ exists to end repeat DMs. Every entry has a stable id so Johanna can
  * paste a link to a single answer — e.g. /contact#lead-time
- * TODO(joanna): replace every answer with her real terms.
+ * TODO(johanna): replace every answer with her real terms.
  */
 /* Five, not eight. The cut three (shipping, alterations, care) all answer
    questions that arise AFTER someone has commissioned a piece; the page's job

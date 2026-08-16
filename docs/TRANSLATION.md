@@ -1,6 +1,6 @@
 # Spanish review — how to actually get it done
 
-The Spanish on the site is a **draft written by the developer, not by Joanna.**
+The Spanish on the site is a **draft written by the developer, not by Johanna.**
 It is careful, neutral Latin-American Spanish written to match the English
 voice, but she is the native speaker and the brand voice is hers. Until she
 has read it, treat every Spanish string as provisional.
@@ -10,7 +10,7 @@ the strings live in [src/content/i18n.ts](../src/content/i18n.ts), a
 TypeScript file. Asking someone who does not write code to review 152 strings
 inside source code means the review never happens. So there is a script.
 
-## Sending it to Joanna
+## Sending it to Johanna
 
 ```bash
 node scripts/export-translations.mjs
@@ -61,7 +61,7 @@ headline, which the Spanish phrasing does not need.
 Spanish has no URL of its own. The switch is client-side, so:
 
 - Google will not index a Spanish version separately.
-- Joanna cannot send someone a link that opens in Spanish.
+- Johanna cannot send someone a link that opens in Spanish.
 
 That was a deliberate trade to ship. The copy is already fully extracted,
 which is the hard part of a routed setup — see

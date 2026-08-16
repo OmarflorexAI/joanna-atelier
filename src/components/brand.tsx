@@ -1,5 +1,5 @@
 /**
- * Joanna — brand marks. Original design for this project.
+ * Johanna — brand marks. Original design for this project.
  *
  * Concept: a single confident "J" whose descender curve is crossed by one
  * fine diagonal — a needle passing through the hook of the letter, the
@@ -13,7 +13,7 @@ type MarkProps = {
   /** Rendered size in px. */
   size?: number;
   className?: string;
-  /** Provide when the mark stands alone with no adjacent "Joanna" text. */
+  /** Provide when the mark stands alone with no adjacent "Johanna" text. */
   title?: string;
 };
 
@@ -68,7 +68,7 @@ export function Monogram({ size = 40, className = "", title }: MarkProps) {
 }
 
 /*
- * The Isologo (mark + typeset "Joanna" wordmark) was removed once the
+ * The Isologo (mark + typeset "Johanna" wordmark) was removed once the
  * signature took over the wordmark role. The nav now carries the bare
  * Monogram and the footer closes with <Signature />, so a third lockup
  * would only be a third way to say the same name.

@@ -1,9 +1,9 @@
 /**
  * Translations. English is the source of truth; Spanish sits beside it.
  *
- * TODO(joanna): review every Spanish string. This is careful, neutral-Latin
+ * TODO(johanna): review every Spanish string. This is careful, neutral-Latin
  * American Spanish written to match the English voice — restrained, concrete,
- * no marketing gloss — but Joanna is the native speaker and the brand voice is
+ * no marketing gloss — but Johanna is the native speaker and the brand voice is
  * hers. Anything she changes here changes the whole site.
  *
  * Shape note: this is a flat map of dotted keys rather than a nested object so

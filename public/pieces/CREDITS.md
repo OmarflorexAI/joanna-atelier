@@ -4,7 +4,7 @@ Every `.jpg` in this folder is **stand-in photography from Unsplash**, used unde
 [Unsplash License](https://unsplash.com/license) (free for commercial use, no permission
 needed, attribution appreciated but not required).
 
-**These are not Joanna's work.** They exist so the layout can be built and reviewed at
+**These are not Johanna's work.** They exist so the layout can be built and reviewed at
 real image weights and aspect ratios. Every one must be replaced with her own photography
 before the site goes live — a portfolio showing another photographer's garments is worse
 than one showing none.

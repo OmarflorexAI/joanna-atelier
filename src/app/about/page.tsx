@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "How a piece is made — the fitting, the drafting, the hand-work, and the final press.",
 };
 
-/** TODO(joanna): confirm this reflects how she actually works.
+/** TODO(johanna): confirm this reflects how she actually works.
  *  Copy lives in src/content/i18n.ts under the `proc.*` keys. */
 const PROCESS_COUNT = 5;
 
@@ -29,7 +29,7 @@ export default function AboutPage() {
         </Reveal>
         <Reveal delay={110}>
           <p className="t-body mt-10 max-w-[54ch] text-[1.08rem] leading-[1.75]">
-            {/* TODO(joanna): replace with her own words. */}
+            {/* TODO(johanna): replace with her own words. */}
             <T k="about.intro1" /> {studio.since}. <T k="about.intro2" />
           </p>
         </Reveal>
@@ -42,7 +42,7 @@ export default function AboutPage() {
             <div className="plate aspect-[4/5] w-full max-w-[22rem] overflow-hidden bg-oat">
               <Image
                 src="/pieces/portrait.jpg"
-                alt="Joanna in the atelier"
+                alt="Johanna in the atelier"
                 width={1600}
                 height={2000}
                 quality={88}

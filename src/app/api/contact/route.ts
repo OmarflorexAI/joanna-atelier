@@ -3,7 +3,7 @@ import { Resend } from "resend";
 import { validateEnquiry, type EnquiryInput } from "@/lib/contact-schema";
 
 /**
- * Enquiry intake. Delivers to Joanna's inbox via Resend.
+ * Enquiry intake. Delivers to Johanna's inbox via Resend.
  *
  * Env required in production:
  *   RESEND_API_KEY   — from resend.com

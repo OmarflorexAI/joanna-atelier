@@ -1,5 +1,5 @@
 /**
- * The catalog. PLACEHOLDER pieces — replace with Joanna's real work.
+ * The catalog. PLACEHOLDER pieces — replace with Johanna's real work.
  *
  * Shape is deliberately CMS-swappable: if she later moves to Sanity, the
  * components consume this same type and nothing in the UI changes.
@@ -26,7 +26,7 @@ export type Piece = {
   description: string[];
   /** Hours of hand-work — the proof of craft. */
   hours?: number;
-  /** TODO(joanna): ONLY publish with written permission from the client. */
+  /** TODO(johanna): ONLY publish with written permission from the client. */
   client?: string;
   featured?: boolean;
   images: PieceImage[];
@@ -44,7 +44,7 @@ export type Category = (typeof CATEGORIES)[number];
 /**
  * Stand-in photography. All frames are 4:5 so the catalog grid, the rail,
  * and the detail gallery share one ratio and never leave ragged columns.
- * TODO(joanna): replace every file in public/pieces/ with her own shots.
+ * TODO(johanna): replace every file in public/pieces/ with her own shots.
  * Sources are listed in public/pieces/CREDITS.md.
  */
 const img = (

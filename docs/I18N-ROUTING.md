@@ -8,7 +8,7 @@ selected. There is one URL per page, and it serves both languages.
 
 That was chosen deliberately to ship, and for the traffic this site actually
 gets — an Instagram bio link, opened on a phone, by someone who already knows
-who Joanna is — it is close to free. The visitor lands, the page is in their
+who Johanna is — it is close to free. The visitor lands, the page is in their
 language (the provider reads `navigator.language`, so an `es-*` phone gets
 Spanish on the first paint), and nothing else about the visit depends on the
 URL.
@@ -20,7 +20,7 @@ Two things, both real:
 1. **Google indexes one version.** Search engines see the English HTML,
    because that is what the server renders. Someone searching in Spanish for
    a Dominican atelier is less likely to find the site.
-2. **Joanna cannot send a Spanish link.** If she pastes a URL into a WhatsApp
+2. **Johanna cannot send a Spanish link.** If she pastes a URL into a WhatsApp
    conversation with a Spanish-speaking client, it opens in whatever that
    person's browser prefers — usually right, but not something she controls.
 
@@ -66,7 +66,7 @@ nav is the tightest row on the site.
 
 Do it when one of these becomes true:
 
-- Joanna asks for a link she can send that is definitely in Spanish.
+- Johanna asks for a link she can send that is definitely in Spanish.
 - Organic search becomes a channel worth optimising for.
 - A second language gets added (the toggle does not scale to three).
 

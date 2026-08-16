@@ -14,7 +14,10 @@ import {
   type MessageKey,
 } from "@/content/i18n";
 
-const STORAGE_KEY = "joanna.locale";
+const STORAGE_KEY = "johanna.locale";
+/** The pre-rename key. Read once so a returning visitor keeps the language
+ *  they picked; the brand was misspelled "Joanna" until the rename. */
+const LEGACY_STORAGE_KEY = "joanna.locale";
 
 type Ctx = {
   locale: Locale;
@@ -40,10 +43,17 @@ function resolve(): Locale {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (isLocale(stored)) return (current = stored);
+    // Migrate a choice made before the rename, then retire the old key.
+    const legacy = localStorage.getItem(LEGACY_STORAGE_KEY);
+    if (isLocale(legacy)) {
+      localStorage.setItem(STORAGE_KEY, legacy);
+      localStorage.removeItem(LEGACY_STORAGE_KEY);
+      return (current = legacy);
+    }
   } catch {
     // Private mode / storage disabled — fall through to language sniffing.
   }
-  // No explicit choice yet: follow the browser. Most of Joanna's traffic is
+  // No explicit choice yet: follow the browser. Most of Johanna's traffic is
   // Dominican, so an es-* browser should not have to hunt for the switch.
   const nav = navigator.language?.toLowerCase() ?? "";
   return (current = nav.startsWith("es") ? "es" : "en");

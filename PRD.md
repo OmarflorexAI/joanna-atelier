@@ -1,7 +1,7 @@
-# PRD — Joanna Online Catalog / Portfolio
+# PRD — Johanna Online Catalog / Portfolio
 
 **Status:** Draft v1 · 2026-08-14
-**Owner:** Samir · **Client:** Joanna (designer, Dominican Republic)
+**Owner:** Samir · **Client:** Johanna (designer, Dominican Republic)
 
 > Sections marked **[NEEDS JOANNA]** are placeholders awaiting real assets
 > (Instagram handle, bio, piece photos, client list). Nothing in the build is
@@ -11,7 +11,7 @@
 
 ## 1. Background
 
-Joanna designs custom, hand-made pieces for a clientele that includes artists and
+Johanna designs custom, hand-made pieces for a clientele that includes artists and
 celebrities in the Dominican Republic. Her reputation is strong and largely
 word-of-mouth; her online presence is essentially her Instagram.
 
@@ -35,7 +35,7 @@ Two problems in her own words:
 ### Non-goals (v1)
 
 E-commerce or checkout · user accounts · a booking calendar · multi-language (see §8) ·
-a blog · anything requiring Joanna to learn a CMS.
+a blog · anything requiring Johanna to learn a CMS.
 
 ## 3. Audience
 
@@ -71,7 +71,7 @@ Neither is a v1 need. **Revisit only if she later wants repeat-client commission
 | Contact | Route Handler → **Resend** email | She just reads her inbox; no dashboard to learn |
 | Hosting | Vercel | Preview deploys, image CDN, trivial custom domain |
 
-**Content trade-off, stated plainly:** local files mean Joanna cannot add pieces herself —
+**Content trade-off, stated plainly:** local files mean Johanna cannot add pieces herself —
 updates go through you. That's the right call for v1 (speed, cost, performance), and the
 data is deliberately shaped so a CMS can be swapped in later without touching components.
 
@@ -168,5 +168,5 @@ type Piece = {
 4. **Home & About** — hero, featured work, proof strip, story.
 5. **Contact** — the animated form, Resend route handler, FAQ anchors.
 6. **Polish** — reveal animations, reduced-motion, accessibility audit, Lighthouse.
-7. **Content swap** — replace all placeholders with Joanna's real assets.
+7. **Content swap** — replace all placeholders with Johanna's real assets.
 8. **Ship** — custom domain, verify the IG bio link end-to-end on a real phone.

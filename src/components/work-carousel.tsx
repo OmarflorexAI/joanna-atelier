@@ -7,7 +7,7 @@ import { useLocale } from "./locale-provider";
 
 /**
  * Home-page gallery. Wraps the Skiper 49 coverflow carousel (Swiper) with
- * Joanna's pieces and the site's own surface, and adds a caption + link for
+ * Johanna's pieces and the site's own surface, and adds a caption + link for
  * the centred slide — the carousel itself renders bare images.
  */
 export function WorkCarousel({ pieces }: { pieces: Piece[] }) {

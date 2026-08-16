@@ -1,5 +1,5 @@
 /**
- * Export the EN/ES dictionary to a CSV Joanna can open in Excel or Google
+ * Export the EN/ES dictionary to a CSV Johanna can open in Excel or Google
  * Sheets, review, and send back — and import it again once she has.
  *
  * The problem this solves: the translations live in a TypeScript file she
@@ -93,7 +93,7 @@ function exportCsv() {
   writeFileSync(CSV, csv, "utf8");
   console.log(`Wrote ${CSV}`);
   console.log(`${rows.length - 1} strings across ${new Set([...en.keys()].map(k => k.split(".")[0])).size} sections.`);
-  console.log("\nSend that file to Joanna. She edits column D only.");
+  console.log("\nSend that file to Johanna. She edits column D only.");
 }
 
 function importCsv(file) {

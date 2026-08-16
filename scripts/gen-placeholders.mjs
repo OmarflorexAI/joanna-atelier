@@ -1,6 +1,6 @@
 /**
  * Generates placeholder SVGs for the catalog at correct aspect ratios,
- * so layout work is real before Joanna's photography arrives.
+ * so layout work is real before Johanna's photography arrives.
  * Run: node scripts/gen-placeholders.mjs
  */
 import { mkdirSync, writeFileSync } from "node:fs";
@@ -79,7 +79,7 @@ SPEC.forEach(([slug, kinds], si) => {
   });
 });
 
-// Portrait of Joanna for the about page
+// Portrait of Johanna for the about page
 writeFileSync(
   join(OUT, "portrait.svg"),
   portrait(900, 1200, TONES[1], "portrait placeholder", 2),
