@@ -113,7 +113,7 @@ export function SiteNav() {
         data-open={open}
         /* Padding and max-width are STATIC — the pill is produced by the skin
            layer behind this row, so nothing here re-lays-out during scroll. */
-        className="nav-bar mx-auto flex w-full max-w-[64rem] items-center justify-between px-5 py-3 md:px-7"
+        className="nav-bar mx-auto flex w-full max-w-[64rem] items-center justify-between px-4 py-2 md:px-7 md:py-3"
       >
         {/* One painted surface for both states — see globals.css. It never
             disappears between them, and the header never changes size. */}
@@ -190,21 +190,22 @@ export function SiteNav() {
         </button>
       </div>
 
-      {/* Mobile panel */}
-      <div
-        id="mobile-menu"
-        hidden={!open}
-        className="border-t border-[var(--rule)] bg-bone md:hidden"
-      >
-        <nav aria-label="Primary" className="flex flex-col px-6 pb-8 pt-2">
+      {/* Mobile panel. Absolutely positioned under the bar via `.nav-panel` —
+          as a flex child of the shell it was squeezed into the bar's row and
+          all but the last tab fell outside the viewport. */}
+      <div id="mobile-menu" hidden={!open} className="nav-panel md:hidden">
+        <nav aria-label="Primary" className="flex flex-col px-5 pb-6 pt-1">
           {ROUTES.map((r) => (
             <Link
               key={r.href}
               href={r.href}
-              onClick={() => setChosen(r.href)}
-              className="flex items-baseline border-b border-[var(--rule)] py-5 last:border-0"
+              onClick={() => {
+                setChosen(r.href);
+                setOpen(false);
+              }}
+              className="flex items-baseline border-b border-[var(--rule)] py-4 last:border-0"
             >
-              <span className="text-[1.6rem] font-bold tracking-[-0.02em] text-umber">
+              <span className="text-[1.35rem] font-bold tracking-[-0.02em] text-umber">
                 {t(r.key)}
               </span>
             </Link>

@@ -36,8 +36,10 @@
   --nav: 620ms;
   --ease-nav: cubic-bezier(0.32, 0.72, 0, 1);
   /* The header occupies this height at EVERY scroll position. Keeping it
-     constant is what stops the fixed bar resizing under the eye mid-scroll. */
-  --nav-h: 5.25rem;
+     constant is what stops the fixed bar resizing under the eye mid-scroll.
+     Phones get the tighter value: the bar is fixed, so every rem it takes is
+     a rem of the work that never shows. */
+  --nav-h: 4.5rem;
 }
 
 @media (min-width: 768px) {
@@ -68,9 +70,9 @@
 
 html {
   scroll-behavior: smooth;
-  /* FAQ anchors must not land under the fixed nav (84px tall with the
-     signature, so 7rem clears it with room to breathe). */
-  scroll-padding-top: 7rem;
+  /* FAQ anchors must not land under the fixed nav. Derived from the bar's own
+     height so it keeps clearing it when that height changes. */
+  scroll-padding-top: calc(var(--nav-h) + 1.75rem);
 }
 
 body {
@@ -247,12 +249,30 @@ body {
   backdrop-filter: blur(20px);
 }
 
-/* Mobile panel open at the top of the page: a flat sheet with a hairline,
-   so the open menu reads as attached to the bar rather than floating. */
-.nav-bar[data-pill="false"][data-open="true"] .nav-skin {
-  background: color-mix(in srgb, var(--bone) 92%, transparent);
-  border-bottom-color: var(--rule);
-  backdrop-filter: blur(12px);
+/* Mobile panel open: a flat sheet with a hairline, so the open menu reads as
+   attached to the bar rather than floating.
+
+   The fill is FULLY opaque, not a 92% wash. The panel below it is solid, so any
+   translucency here makes the bar read as a window onto whatever it happens to
+   be over — scrolled to a piece photo, the image showed straight through the
+   bar while the menu beneath it stayed solid. */
+.nav-bar[data-open="true"] .nav-skin {
+  inset: 0 -100vw;
+  border-radius: 0;
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+/* When the menu is open the SHELL carries the fill, not the bar's skin. The
+   bar is centred inside the shell with a few px above and below it, and a skin
+   inset to the bar left those px unpainted — a sliver of the page showing
+   between the bar and the solid panel beneath. Painting the shell covers the
+   full --nav-h in one surface. */
+.nav-shell:has(.nav-bar[data-open="true"]) {
+  background: var(--bone);
+  border-bottom: 1px solid var(--rule);
 }
 
 /* Every direct child of the bar sits above the skin. Stated once here rather
@@ -264,18 +284,74 @@ body {
 }
 
 /* The signature scales rather than re-rendering at a new width — a width
-   attribute cannot be transitioned, which is what made it snap. */
+   attribute cannot be transitioned, which is what made it snap.
+
+   Two independent factors — the phone's tighter bar and the condensed pill —
+   multiply through one custom property so they compose instead of one
+   `transform` overwriting the other.
+
+   Registered because an unregistered custom property is an untyped token: it
+   would flip between values and the scale would step rather than glide. */
+@property --mark-pill {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+
 .nav-mark {
+  --mark-base: 0.9;
+  --mark-pill: 1;
   transform-origin: left center;
+  transform: scale(calc(var(--mark-base) * var(--mark-pill)));
   transition: transform var(--nav) var(--ease-nav);
 }
 
+@media (min-width: 768px) {
+  .nav-mark {
+    --mark-base: 1;
+  }
+}
+
 .nav-bar[data-pill="true"] .nav-mark {
-  transform: scale(0.86);
+  --mark-pill: 0.86;
 }
 
 .nav-tabs {
   transition: transform var(--nav) var(--ease-nav);
+}
+
+/* ---------- Mobile menu panel ----------
+
+   The panel MUST NOT be a flex child of .nav-shell. It was, and the shell is
+   `display:flex; align-items:center` with a fixed `height: var(--nav-h)` — so
+   an open panel became a second item in that row: it stole 147px of width from
+   the bar (390 → 219) and, being 278px tall inside an 84px shell, was centred
+   to `top: -97px`. "Work" landed at y = -88 (off-screen), "Atelier" was cut by
+   the bar's edge, and only "Contact" was left in the viewport. Taking it out of
+   flow fixes the width theft and the vertical centring in one move.
+
+   `top: var(--nav-h)` anchors it under the bar at every scroll position,
+   because the shell's height is the one thing here that never changes. */
+.nav-panel {
+  position: absolute;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  /* Its own surface: the panel overlays page content, so it needs a fill of
+     its own rather than borrowing the bar's skin, which stops at the bar. */
+  background: var(--bone);
+  border-top: 1px solid var(--rule);
+  box-shadow: 0 12px 28px rgba(36, 31, 27, 0.08);
+  /* A long menu on a short phone must still reach its last row. */
+  max-height: calc(100dvh - var(--nav-h));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+@media (min-width: 768px) {
+  .nav-panel {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
